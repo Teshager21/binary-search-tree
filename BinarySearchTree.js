@@ -28,15 +28,19 @@ class Tree{
        
     }
     #height(node){
-     if(node.right===null || node.right.value===undefined && node.left===null||node.left.value===undefined) {
-        return 0;}
+     if(node.right===null || node.right.value===undefined && node.left===null||node.left.value===undefined) return 0;
     const leftHeight=this.#height(node.left); 
     const righHeight=this.#height(node.right);
-     return Math.max(leftHeight,righHeight)+1;
+    return Math.max(leftHeight,righHeight)+1;
     }
     height(value){
         const node=this.find(value);
         return this.#height(node);
+    }
+
+    depth(value){
+        const node= this.find(value);
+        return (this.height(this.root.value)-this.height(node.value));
     }
 
     #findMinOfSubtree(rt){
@@ -46,12 +50,12 @@ class Tree{
      return this.#findMinOfSubtree(rt.left)
     }
     #find(rt,value){
-    let found= new Node();
-     if(rt===null ||value===null) return;
-     if(rt.value>value) found=this.#find(rt.left,value);
-     else if(rt.value<value) found=this.#find(rt.right,value);
-     else found=rt;
-    return found;
+        let found= new Node();
+        if(rt===null ||value===null) return;
+        if(rt.value>value) found=this.#find(rt.left,value);
+        else if(rt.value<value) found=this.#find(rt.right,value);
+        else found=rt;
+        return found;
     }
 
     find(value){

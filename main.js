@@ -14,7 +14,9 @@ const tree= new Tree(arr);
 //  prettyPrint(tree.root)
 // console.log(tree.find(324));
 // tree.postOrder(print);
-console.log(tree.height(5));
+console.log('depth',tree.depth(23));
+console.log('height',tree.height(5));
+console.log('height of root',tree.height(tree.root.value))
 
 function print(item){
  console.log(item.value)
