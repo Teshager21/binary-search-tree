@@ -4,7 +4,8 @@ const arr=[1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324];
 const tree= new Tree(arr);
 // console.log('rooooooooooooot',tree.root,tree.root.left,tree.root.right)
  prettyPrint(tree.root);
-// tree.insert(tree.root,2);
+tree.insert(2);
+ prettyPrint(tree.root);
 
 
 
