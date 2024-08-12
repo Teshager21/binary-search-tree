@@ -13,7 +13,7 @@ const tree= new Tree(arr);
 //  tree.deleteItem(23);
 //  prettyPrint(tree.root)
 // console.log(tree.find(324));
-tree.inOrder(print);
+tree.preOrder(print);
 
 function print(item){
  console.log(item.value)

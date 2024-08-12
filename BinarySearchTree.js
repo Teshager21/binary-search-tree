@@ -76,6 +76,17 @@ class Tree{
         if(!callback) throw new Error("The inOrder methods requires and callback parameter");
         this.#inOrder(this.root,callback);
     }
+    #preOrder(rt,callback){
+        if(rt===null||rt===undefined) return;
+        callback(rt);
+        if(rt.left.value!==undefined &&rt.left!==null) this.#preOrder(rt.left,callback)
+        if(rt.right.value!==undefined) this.#preOrder(rt.right,callback);
+    }
+    preOrder(callback){
+        if(!callback) throw new Error("The preOrder method expects a call back function");
+        this.#preOrder(this.root,callback);
+
+    }
     #deleteNode(rt,value){
         const node= new Node(value);
         if(rt===null) return;
