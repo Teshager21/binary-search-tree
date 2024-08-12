@@ -56,7 +56,7 @@ class Tree{
             callback(queue[0]);
             queue.shift();
             this.#levelorder(queue[0],queue,callback);
-        }
+        } 
         
         
 
@@ -65,6 +65,16 @@ class Tree{
         if(!callback) throw new Error('Please pass in a callback function');
         let queue=[];
         this.#levelorder(this.root,queue,callback);
+    }
+    #inOrder(rt,callback){
+     if(rt===null||rt===undefined) return;
+     if(rt.left!==null && rt.left.value!==undefined) this.#inOrder(rt.left,callback);
+     callback(rt);
+     if(rt.right.value!==undefined)this.#inOrder(rt.right,callback)
+    }
+    inOrder(callback){
+        if(!callback) throw new Error("The inOrder methods requires and callback parameter");
+        this.#inOrder(this.root,callback);
     }
     #deleteNode(rt,value){
         const node= new Node(value);
