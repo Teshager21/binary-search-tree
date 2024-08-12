@@ -27,6 +27,17 @@ class Tree{
        (node.value>rt.value)? this.#insert(rt.right,node.value) : this.#insert(rt.left,node.value);
        
     }
+    #height(node){
+     if(node.right===null || node.right.value===undefined && node.left===null||node.left.value===undefined) {
+        return 0;}
+    const leftHeight=this.#height(node.left); 
+    const righHeight=this.#height(node.right);
+     return Math.max(leftHeight,righHeight)+1;
+    }
+    height(value){
+        const node=this.find(value);
+        return this.#height(node);
+    }
 
     #findMinOfSubtree(rt){
      if(rt===null) return;

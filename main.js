@@ -13,7 +13,8 @@ const tree= new Tree(arr);
 //  tree.deleteItem(23);
 //  prettyPrint(tree.root)
 // console.log(tree.find(324));
-tree.postOrder(print);
+// tree.postOrder(print);
+console.log(tree.height(5));
 
 function print(item){
  console.log(item.value)
