@@ -28,6 +28,52 @@ class Tree{
        
     }
 
+    #findMinOfSubtree(rt){
+    //  console.log('min is ',rt);
+     if(rt===null) return;
+     if(rt.left.value===undefined && rt.right.value===undefined) return rt;
+     if(rt.left.value===undefined) return rt;
+     return this.#findMinOfSubtree(rt.left)
+    }
+    #deleteNode(rt,value){
+        console.log(value);
+        const node= new Node(value);
+        if(rt===null) return;
+        if(rt.value>node.value) {
+            this.#deleteNode(rt.left,value);
+            return;
+        }
+        if(rt.value<node.value){
+            this.#deleteNode(rt.right,value);
+            return;
+        } 
+          //found the item
+            if(rt.left.value===undefined && rt.right.value===undefined){// node has no child
+                const nullNode=new Node();
+                Object.assign(rt,nullNode);
+                return;
+            }
+            if(rt.right.value===undefined){ //node has only left child
+                rt.value=rt.left.value;
+                rt.left=null;
+                return;
+            }
+            if(rt.left.value===undefined){ //node has only right child
+                rt.value=rt.right.value;
+                rt.right=null;
+                return;
+            }
+           
+         const minOfSubtree= this.#findMinOfSubtree(rt).value  //node has two children
+         this.#deleteNode(rt,minOfSubtree);
+         rt.value= minOfSubtree;
+    }
+
+    deleteItem(value){
+        this.#deleteNode(this.root,value);
+
+    }
+
     #arrayToBST(array){
         const len=array.length;
         if(len>1){
