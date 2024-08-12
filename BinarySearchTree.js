@@ -87,6 +87,17 @@ class Tree{
         this.#preOrder(this.root,callback);
 
     }
+    #postOrder(rt,callback){
+        if(rt===null||rt===undefined) return;
+        if(rt.left.value!==undefined &&rt.left!==null) this.#preOrder(rt.left,callback)
+        if(rt.right.value!==undefined) this.#preOrder(rt.right,callback);
+        callback(rt);
+    }
+    postOrder(callback){
+        if(!callback) throw new Error("The postOrder method expects a call back function");
+        this.#postOrder(this.root,callback);
+
+    }
     #deleteNode(rt,value){
         const node= new Node(value);
         if(rt===null) return;
