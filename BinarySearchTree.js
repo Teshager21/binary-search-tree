@@ -9,47 +9,47 @@ class Node{
 class Tree{
     constructor(array){
         this.buildTree(array);
-
     }
-root=new Node();
-    insertNode(rt,node ){
-        // console.log(rt)
-       if(rt!==null && rt.value===undefined){
-        // console.log('been here',rt)
+    root=new Node();
+
+    insert(rt,value){
+        const node= new Node(value);
+       if(rt.value===undefined){
             Object.assign(rt,node);
             rt.right= new Node();
             rt.left= new Node();
+            return;
        } 
-       else { 
-        if(rt===null) {
-            Object.assign(rt,node)
-            //  console.log('heeeeeeeeeere',rt)
-            return rt
-        }
-        else if(node.value>rt.value){
-            this.insertNode(rt.right,node);
-            // console.log('root',this.root,rt.right);
-        }else {
-            this.insertNode(rt.left,node);
-            // console.log('root left',this.root,rt.left)
-        }
-       }
+       (node.value>rt.value)? this.insert(rt.right,node.value) : this.insert(rt.left,node.value);
+       
     }
+
+    arrayToBST(array){
+        const len=array.length;
+        if(len>1){
+            const mid= Math.floor(len/2);
+            const leftArray= array.slice(0,mid);
+            const rightArray= array.slice(mid+1,len-1);
+            this.insert(this.root,array[mid]);
+            this.arrayToBST(leftArray);
+            this.arrayToBST(rightArray);
+        }else{
+           if(array.length===1){
+                const mid=array[0];
+                this.insert(this.root,array[mid]);
+           }
+          
+        }
+    }
+
     buildTree(array){
-    array.sort((a,b)=>a-b); //sort the array
-    array=[...new Set(array)];   //remove duplicates
-    // console.log(array)
-    //build nodes from the sorted array
-    array.forEach(element => {
-        const node=new Node(element);
-        this.insertNode(this.root,node);
-    });
-    //connect them together to build a tree
+        array.sort((a,b)=>a-b); //sort the array
+        array=[...new Set(array)];   //remove duplicates
+        let len=array.length;
+        this.arrayToBST(array); //build nodes from the sorted array ->build nodes from the sorted array
+        
     }
 
 }
-
-// const node = new Node('Apple');
-// console.log(node);
 
 export default Tree;
