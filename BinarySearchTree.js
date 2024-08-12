@@ -13,6 +13,7 @@ class Tree{
     root=new Node();
 
     insert(rt,value){
+        console.log('called..',value)
         const node= new Node(value);
        if(rt.value===undefined){
             Object.assign(rt,node);
@@ -24,30 +25,27 @@ class Tree{
        
     }
 
-    arrayToBST(array){
+    #arrayToBST(array){
+        console.log(array);
         const len=array.length;
         if(len>1){
             const mid= Math.floor(len/2);
             const leftArray= array.slice(0,mid);
-            const rightArray= array.slice(mid+1,len-1);
+            const rightArray= array.slice(mid+1,len);
             this.insert(this.root,array[mid]);
-            this.arrayToBST(leftArray);
-            this.arrayToBST(rightArray);
+            this.#arrayToBST(leftArray);
+            this.#arrayToBST(rightArray);
+        
         }else{
-           if(array.length===1){
-                const mid=array[0];
-                this.insert(this.root,array[mid]);
-           }
-          
+             this.insert(this.root,array[0]);
         }
     }
 
     buildTree(array){
         array.sort((a,b)=>a-b); //sort the array
         array=[...new Set(array)];   //remove duplicates
-        let len=array.length;
-        this.arrayToBST(array); //build nodes from the sorted array ->build nodes from the sorted array
-        
+        console.log(array);
+        this.#arrayToBST(array); //convert the sorted array into a balanced tree 
     }
 
 }
