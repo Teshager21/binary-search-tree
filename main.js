@@ -8,9 +8,10 @@ const tree= new Tree(arr);
 // tree.deleteItem(7);
 // tree.deleteItem(9);
 // tree.deleteItem(5);
- prettyPrint(tree.root);
- tree.deleteItem(23);
- prettyPrint(tree.root);
+//  prettyPrint(tree.root);
+//  tree.deleteItem(23);
+//  prettyPrint(tree.root)
+console.log(tree.find(324))
 
 
 

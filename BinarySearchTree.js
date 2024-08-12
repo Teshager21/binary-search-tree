@@ -29,14 +29,24 @@ class Tree{
     }
 
     #findMinOfSubtree(rt){
-    //  console.log('min is ',rt);
      if(rt===null) return;
      if(rt.left.value===undefined && rt.right.value===undefined) return rt;
      if(rt.left.value===undefined) return rt;
      return this.#findMinOfSubtree(rt.left)
     }
+    #find(rt,value){
+    let found= new Node();
+     if(rt===null ||value===null) return;
+     if(rt.value>value) found=this.#find(rt.left,value)
+     else if(rt.value<value) found=this.#find(rt.right,value)
+     else found=rt;
+    return found;
+    }
+
+    find(value){
+        return this.#find(this.root,value);
+    }
     #deleteNode(rt,value){
-        console.log(value);
         const node= new Node(value);
         if(rt===null) return;
         if(rt.value>node.value) {
