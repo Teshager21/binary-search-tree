@@ -37,14 +37,34 @@ class Tree{
     #find(rt,value){
     let found= new Node();
      if(rt===null ||value===null) return;
-     if(rt.value>value) found=this.#find(rt.left,value)
-     else if(rt.value<value) found=this.#find(rt.right,value)
+     if(rt.value>value) found=this.#find(rt.left,value);
+     else if(rt.value<value) found=this.#find(rt.right,value);
      else found=rt;
     return found;
     }
 
     find(value){
         return this.#find(this.root,value);
+    }
+    #levelorder(rt,queue,callback){
+        if (rt===null||rt===undefined) return;
+        else if(queue.length===0)(queue.push(rt));
+        if(rt.left.value!==undefined||rt.left===null) queue.push(rt.left);
+        if(rt.right.value!==undefined || rt.right===null) queue.push(rt.right);
+       
+        if(queue.length>0){
+            callback(queue[0]);
+            queue.shift();
+            this.#levelorder(queue[0],queue,callback);
+        }
+        
+        
+
+    }
+    levelOrder(callback){
+        if(!callback) throw new Error('Please pass in a callback function');
+        let queue=[];
+        this.#levelorder(this.root,queue,callback);
     }
     #deleteNode(rt,value){
         const node= new Node(value);
