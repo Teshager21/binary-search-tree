@@ -53,6 +53,13 @@ class Tree{
        return this.#isBalanced(this.root);
     }
 
+    rebalance(){
+        const newBucket=[];
+        this.inOrder((node)=>newBucket.push(node.value));
+        this.root=new Node();
+        this.buildTree(newBucket);
+    }
+
     #findMinOfSubtree(rt){
      if(rt===null) return;
      if(rt.left.value===undefined && rt.right.value===undefined) return rt;

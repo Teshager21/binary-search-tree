@@ -2,26 +2,16 @@ import Tree from "./BinarySearchTree.js";
 
 const arr=[1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324];
 const tree= new Tree(arr);
-// console.log('rooooooooooooot',tree.root,tree.root.left,tree.root.right)
  prettyPrint(tree.root);
  console.log(`'''''''''''''''''''''''''''''''''''''''''''''''''''''`)
-//  tree.insert(29);
-// tree.deleteItem(7);
-// tree.deleteItem(9);
-// tree.deleteItem(5);
-//  prettyPrint(tree.root);
-//  tree.deleteItem(23);
-//  prettyPrint(tree.root)
-// console.log(tree.find(324));
-// tree.postOrder(print);
-// console.log('depth',tree.depth(23));
-// console.log('height',tree.height(5));
-// console.log('height of root',tree.height(tree.root.value))
 tree.deleteItem(5);
 tree.deleteItem(1);
 tree.deleteItem(7);
 tree.deleteItem(3);
 console.log(tree.isBalanced())
+prettyPrint(tree.root);
+tree. rebalance();
+console.log(tree.isBalanced());
 prettyPrint(tree.root);
 function print(item){
  console.log(item.value)
