@@ -43,6 +43,16 @@ class Tree{
         return (this.height(this.root.value)-this.height(node.value));
     }
 
+    #isBalanced(node){
+    if(node===null || node.value===undefined) return true;
+    else if(node.left===null|| node.left.value===undefined && (node.right.value===undefined || node.right===null)) return true;
+    else return (this.#isBalanced(node.left)&&this.#isBalanced(node.right))&&(Math.abs(this.#height(node.left)-(this.#height(node.right)))<=1);
+    }
+
+    isBalanced(){
+       return this.#isBalanced(this.root);
+    }
+
     #findMinOfSubtree(rt){
      if(rt===null) return;
      if(rt.left.value===undefined && rt.right.value===undefined) return rt;

@@ -14,10 +14,15 @@ const tree= new Tree(arr);
 //  prettyPrint(tree.root)
 // console.log(tree.find(324));
 // tree.postOrder(print);
-console.log('depth',tree.depth(23));
-console.log('height',tree.height(5));
-console.log('height of root',tree.height(tree.root.value))
-
+// console.log('depth',tree.depth(23));
+// console.log('height',tree.height(5));
+// console.log('height of root',tree.height(tree.root.value))
+tree.deleteItem(5);
+tree.deleteItem(1);
+tree.deleteItem(7);
+tree.deleteItem(3);
+console.log(tree.isBalanced())
+prettyPrint(tree.root);
 function print(item){
  console.log(item.value)
 }
