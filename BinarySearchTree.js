@@ -13,6 +13,7 @@ class Tree{
     root=new Node();
 
     insert(value){
+        if(this.#find(value)) return;
         this.#insert(this.root,value);
     }
 
@@ -165,7 +166,6 @@ class Tree{
 
     deleteItem(value){
         this.#deleteNode(this.root,value);
-
     }
 
     #arrayToBST(array){

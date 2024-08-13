@@ -2,20 +2,15 @@ import Tree from "./BinarySearchTree.js";
 
 const arr=[1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324];
 const tree= new Tree(arr);
- prettyPrint(tree.root);
  console.log(`'''''''''''''''''''''''''''''''''''''''''''''''''''''`)
 tree.deleteItem(5);
 tree.deleteItem(1);
 tree.deleteItem(7);
 tree.deleteItem(3);
-console.log(tree.isBalanced())
-prettyPrint(tree.root);
 tree. rebalance();
-console.log(tree.isBalanced());
+tree.insert(23)
 prettyPrint(tree.root);
-function print(item){
- console.log(item.value)
-}
+
 
 
 
