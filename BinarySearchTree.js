@@ -35,13 +35,11 @@ class Tree{
     return Math.max(leftHeight,righHeight)+1;
     }
     height(value){
-        const node=this.find(value);
-        return this.#height(node);
+        return this.#height(this.find(value));
     }
 
     depth(value){
-        const node= this.find(value);
-        return (this.height(this.root.value)-this.height(node.value));
+        return (this.height(this.root.value)-this.height(value));
     }
 
     #isBalanced(node){
@@ -59,6 +57,7 @@ class Tree{
         this.inOrder((node)=>newBucket.push(node.value));
         this.root=new Node();
         this.buildTree(newBucket);
+        // console.log('tree rebalanced')
     }
 
     #findMinOfSubtree(rt){
@@ -90,9 +89,7 @@ class Tree{
             queue.shift();
             this.#levelorder(queue[0],queue,callback);
         } 
-        
-        
-
+           
     }
     levelOrder(callback){
         if(!callback) throw new Error('Please pass in a callback function');
@@ -144,8 +141,7 @@ class Tree{
         } 
           //found the item
             if(rt.left.value===undefined && rt.right.value===undefined){// node has no child
-                const nullNode=new Node();
-                Object.assign(rt,nullNode);
+                Object.assign(rt,new Node);
                 return;
             }
             if(rt.right.value===undefined){ //node has only left child
@@ -166,10 +162,12 @@ class Tree{
 
     deleteItem(value){
         this.#deleteNode(this.root,value);
+        this.isBalanced() || this.rebalance();
     }
 
     #arrayToBST(array){
         const len=array.length;
+        len===1 && this.#insert(this.root,array[0]);
         if(len>1){
             const mid= Math.floor(len/2);
             const leftArray= array.slice(0,mid);
@@ -178,15 +176,12 @@ class Tree{
             this.#arrayToBST(leftArray);
             this.#arrayToBST(rightArray);
         
-        }else{
-             this.#insert(this.root,array[0]);
         }
     }
 
     buildTree(array){
         array.sort((a,b)=>a-b); //sort the array
         array=[...new Set(array)];   //remove duplicates
-        console.log(array);
         this.#arrayToBST(array); //convert the sorted array into a balanced tree 
     }
 
